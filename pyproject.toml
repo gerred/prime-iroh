@@ -24,7 +24,6 @@ Repository = "https://github.com/PrimeIntellect-ai/prime-iroh"
 Issues = "https://github.com/PrimeIntellect-ai/prime-iroh/issues"
 
 [tool.maturin]
-features = ["extension-module"]
 generate-stubs = true
 release = true
 module-name = "prime_iroh._prime_iroh"
