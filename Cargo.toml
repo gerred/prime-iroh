@@ -6,7 +6,7 @@ edition = "2024"
 [lib]
 name = "prime_iroh"
 path = "rust/src/lib.rs"
-crate-type = ["cdylib", "rlib"]
+crate-type = ["rlib", "cdylib"]
 
 [dependencies]
 anyhow = "1.0.97"
@@ -39,4 +39,8 @@ name = "connection"
 path = "rust/tests/connection.rs"
 
 [features]
-extension-module = []
+default = []
+# Backend options
+rdma = [] # Enable RDMA backend support
+# Development-only features
+dev = []
