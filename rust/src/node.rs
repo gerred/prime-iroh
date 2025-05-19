@@ -57,6 +57,14 @@ impl Node {
     }
 }
 
+impl Drop for Node {
+    fn drop(&mut self) {
+        if let Err(err) = self.close() {
+            log::error!("Failed to close node on drop: {:?}", err);
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

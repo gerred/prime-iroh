@@ -9,14 +9,14 @@ class BidirectionalTest:
         # Initialize nodes
         self.node0 = Node.with_seed(NUM_STREAMS, None)
         self.node1 = Node.with_seed(NUM_STREAMS, None)
-        
+
         # Wait for nodes to initialize (only necessary in single process tests)
         time.sleep(1)
 
         # Connect bidirectionally
         self.node0.connect(self.node1.node_id(), 10)
         self.node1.connect(self.node0.node_id(), 10)
-        
+
         # Wait for connection to be established
         while not self.node0.can_recv() or not self.node1.can_send():
             time.sleep(0.1)
@@ -34,7 +34,7 @@ class BidirectionalTest:
 
 def test_bidirectional_communication():
     test = BidirectionalTest()
-    
+
     # Test basic connection state
     assert test.node0.is_ready()
     assert test.node1.is_ready()

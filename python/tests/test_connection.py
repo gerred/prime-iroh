@@ -7,7 +7,7 @@ class ConnectionTest:
     def __init__(self, num_nodes):
         # Initialize nodes
         self.nodes = []
-        
+
         for i in range(num_nodes):
             node = Node(num_streams=NUM_STREAMS)
             node_id = node.node_id()
@@ -16,7 +16,7 @@ class ConnectionTest:
 
         # Wait for nodes to initialize (only necessary in single process tests)
         time.sleep(1)
-        
+
         # Connect nodes
         for i in range(num_nodes):
             current_node = self.nodes[i]
@@ -25,7 +25,7 @@ class ConnectionTest:
             peer_id = self.nodes[j].node_id()
             print(f"Connecting node {i}->{j} (ID: {node_id}->{peer_id})")
             current_node.connect(peer_id, 10)
-        
+
         # Wait for all nodes to be ready
         while not all(node.is_ready() for node in self.nodes):
             time.sleep(0.1)
@@ -52,12 +52,12 @@ class ConnectionTest:
 def test_connection():
     num_nodes = 2
     test = ConnectionTest(num_nodes)
-    
+
     # Test connection state
     test.verify_active_connection_state()
-    
+
     # Teardown
     test.teardown()
-    
+
     # Test connection state
-    test.verify_inactive_connection_state() 
+    test.verify_inactive_connection_state()
